@@ -1,0 +1,65 @@
+<div class="container">
+
+  <mat-card class="card">
+
+    <div class="titulo">
+      <mat-card-title>Novo Agendamento</mat-card-title>
+      <button mat-mini-fab color="warn" color="warn" [routerLink]="['','atendimento']">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <mat-divider inset style="margin-top: 1em;"></mat-divider>
+
+    <form class="example-form" [formGroup]="atendimentoForm">
+      <div class="titulo">
+        <mat-form-field appearance="outline">
+          <mat-label >Tipo de Atendimento</mat-label>
+          <mat-select id="tipoAtendimento" name="tipoAtendimento" formControlName="tipoAtendimento">
+            <mat-option  value= 'CADUNICO'>
+              Cadastro Unico
+            </mat-option>
+            <mat-option value= 'SERVSOCIAL'>
+              Serviço Social
+            </mat-option>
+          </mat-select>
+          <mat-error>Escolha o tipo de Atendimento</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Escolha Uma Data</mat-label>
+          <input type="text"  [matDatepickerFilter]="myFilter" matInput [min]="minDate" [matDatepicker]="picker"
+          name="dataAgendamento" formControlName="dataAgendamento" >
+          <mat-error>Escolha a Data de Agendamento</mat-error>
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+          <mat-datepicker touchUi #picker disabled="false"></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Hora Atendimento</mat-label>
+          <mat-select name="horaAgendamento" formControlName="horaAgendamento">
+            <mat-option *ngFor="let item of hora" [value]="item">
+              {{item}}
+            </mat-option>
+          </mat-select>
+          <mat-error>Escolha a Hora de Agendamento</mat-error>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Descrição do Atendimento</mat-label>
+        <textarea matInput placeholder="Digite uma breve descrição do atendimento" name="descricaoAtendimento"
+            formControlName="descricaoAtendimento" ></textarea>
+        <mat-error>Não pode ser em branco</mat-error>
+      </mat-form-field>
+
+      <div class="titulo" style="justify-content: flex-start;">
+        <button mat-flat-button color="primary" (click)="agendarAtendimmento()">Salvar</button>
+        <button mat-flat-button color="warn" [routerLink]="['','atendimento']">Voltar</button>
+      </div>
+    </form>
+
+  </mat-card>
+
+</div>

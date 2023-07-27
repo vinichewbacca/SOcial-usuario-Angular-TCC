@@ -1,0 +1,16 @@
+@media (max-width: 720px) {
+  .content {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.content {
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+  margin: 1.5em 2em;
+ justify-content: center;
+}
+.mat-tab-group {
+  margin-bottom: 48px;
+}

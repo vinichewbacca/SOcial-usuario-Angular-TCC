@@ -1,0 +1,48 @@
+<div class="container" *ngIf="historico$ | async as historico">
+  <mat-card class="card">
+    <div class="titulo">
+      <mat-card-title>Histórico de Atendimento</mat-card-title>
+      <button mat-mini-fab color="warn" color="warn" [routerLink]="['','buscaUsuario']">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <mat-divider inset style="margin-top: 1em;"></mat-divider>
+
+      <mat-card-content *ngFor="let atendimento of historico">
+        <div class="titulo">
+          <p>Nome:{{atendimento.nome}}</p>
+          <p>Data de Nascimento: {{atendimento.dataNascimento | date: 'dd/MM/yyyy'}}</p>
+          <p>CPF: {{atendimento.cpf}}</p>
+        </div>
+
+        <div class="titulo">
+          <p *ngIf="atendimento.tipoAtendimento === 'SERVSOCIAL'; else cadUnico">
+            Atendimento: Serviço Social
+          </p>
+          <p>Data Atendimento: {{atendimento.dataAgendamento | date: 'dd/MM/yyyy'}}</p>
+          <p>Hora Atendimento: {{atendimento.horaAgendamento}}</p>
+
+          <ng-template #cadUnico>
+            Atendimento: Cadastro Unico
+          </ng-template>
+        </div>
+
+        <div class="titulo">
+          <p>Descrição Atendimento: {{atendimento.descricaoAtendimento}}</p>
+          <p>Status: {{atendimento.statusAtendimento}}</p>
+          <p>Técnico: {{atendimento.nomeTecnico}}</p>
+        </div>
+
+        <form>
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Relatório de Atendimento</mat-label>
+            <textarea matInput disabled [value]="atendimento.relatorio" name="relatorio"></textarea>
+            <mat-error>Não pode ser em branco</mat-error>
+          </mat-form-field>
+        </form>
+        <mat-divider inset style="margin-top: 1em;"></mat-divider>
+      </mat-card-content>
+  </mat-card>
+</div>
+

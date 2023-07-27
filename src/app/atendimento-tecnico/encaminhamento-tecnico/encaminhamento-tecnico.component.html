@@ -1,0 +1,70 @@
+<div class="container">
+
+  <mat-card class="card">
+    <div class="titulo">
+      <mat-card-title >Nome do tecnico??</mat-card-title>
+      <button mat-mini-fab color="warn" color="warn" [routerLink]="['','atendimento']">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <mat-divider inset style="margin-top: 1em;"></mat-divider>
+
+    <form class="example-form" [formGroup]="tecnicoForm">
+      <div class="titulo">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label  >Nome do Usuario</mat-label>
+          <input matInput id="nome" name="nome" formControlName="nome">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label >CPF Usuario</mat-label>
+          <input matInput id="cpfUsuario" name="cpfUsuario" formControlName="cpfUsuario">
+        </mat-form-field>
+      </div>
+
+      <div class="titulo">
+        <mat-form-field appearance="outline">
+          <mat-label >Atendimento</mat-label>
+          <input matInput id="tipoAtendimento" name="tipoAtendimento" formControlName="tipoAtendimento">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Data do Agendamento</mat-label>
+          <input type="text" matInput [matDatepicker]="picker"
+          name="dataAgendamento" formControlName="dataAgendamento" >
+          <mat-error>Data de Agendamento</mat-error>
+          <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+          <mat-datepicker touchUi #picker disabled="true"></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Hora Atendimento</mat-label>
+          <input matInput id="horaAgendamento" name="horaAgendamento" formControlName="horaAgendamento">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Descrição do Atendimento</mat-label>
+          <textarea matInput placeholder="Digite uma breve descrição do atendimento" name="descricaoAtendimento"
+              formControlName="descricaoAtendimento" ></textarea>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Escolha o Técnico</mat-label>
+        <mat-select name="idTecnico" formControlName="idTecnico">
+          <mat-option *ngFor="let item of tecnicos$ | async" [value]="item.id">
+            {{item.nome}} || {{item.cargo}}
+          </mat-option>
+        </mat-select>
+        <mat-error>Escolha um Técnico</mat-error>
+      </mat-form-field>
+
+      <div class="titulo" style="justify-content: flex-start;">
+        <button mat-flat-button color="primary" (click)="salvar()" >Salvar</button>
+        <button mat-flat-button color="warn" [routerLink]="['','atendimento']">Voltar</button>
+      </div>
+    </form>
+  </mat-card>
+
+</div>

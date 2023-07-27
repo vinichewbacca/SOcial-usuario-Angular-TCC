@@ -1,0 +1,67 @@
+<div class="container">
+
+  <mat-card class="card">
+    <div class="titulo" >
+      <mat-card-title>Buscar Usuario</mat-card-title>
+      <button mat-mini-fab color="warn" color="warn" [routerLink]="['','atendimento']">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Buscar</mat-label>
+      <input matInput (keyup)="buscar($event)">
+    </mat-form-field>
+
+    <div *ngIf="usuario$ | async as usuario" class="mat-elevation-z8">
+      <table mat-table recycleRows [dataSource]= usuario>
+         <!-- Nome Column -->
+          <ng-container matColumnDef="nome">
+            <th mat-header-cell *matHeaderCellDef> Nome </th>
+            <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="cpf">
+            <th mat-header-cell *matHeaderCellDef> CPF </th>
+            <td mat-cell *matCellDef="let element"> {{element.cpf}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="dataNascimento">
+            <th mat-header-cell *matHeaderCellDef> Data Nascimento </th>
+            <td mat-cell *matCellDef="let element"> {{element.dataNascimento | date: 'dd/MM/yyyy'}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="historico">
+            <th mat-header-cell *matHeaderCellDef>Historico </th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button (click)="historicoAtendimento(element.id)">
+                <mat-icon >assignment</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="editar">
+            <th mat-header-cell *matHeaderCellDef>Editar</th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button [routerLink]="['','atualizarUsuario',element.id]">
+                <mat-icon >edit</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="agendar">
+            <th mat-header-cell *matHeaderCellDef>Agendar</th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button [routerLink]="['','atendimento','novoAtendimento',element.id]">
+                <mat-icon>event</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+          <tr mat-row *matRowDef="let row; columns: colunas;">
+      </table>
+    </div>
+  </mat-card>
+
+</div>

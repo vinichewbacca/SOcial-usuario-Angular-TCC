@@ -1,0 +1,36 @@
+<div class="login" >
+  <mat-card class="card" >
+    <mat-card-title>Login</mat-card-title>
+
+    <form class="example-form" (ngSubmit)="login1()" #loginForm="ngForm">
+      <mat-form-field id="cpf" class="example-full-width" appearance="outline">
+        <mat-label>CPF</mat-label>
+        <input type="text" matInput placeholder="12345678911" [(ngModel)]="login" name="login" required/>
+        <mat-hint align="start"
+          ><strong>Digite apenas números</strong>
+        </mat-hint>
+        <mat-error>CPF obrigatório</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Senha</mat-label>
+        <input type="password" matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="senha" name="senha" required/>
+        <span
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </span>
+        <mat-error>Senha obrigatória</mat-error>
+      </mat-form-field>
+
+      <div style="display: flex; column-gap: 1em;">
+        <button mat-flat-button [disabled]="loginForm.invalid" color="primary">Entrar</button>
+      </div>
+
+    </form>
+  </mat-card>
+</div>

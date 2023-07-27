@@ -1,0 +1,132 @@
+<div class="container">
+  <mat-card class="card">
+    <div class="titulo" >
+      <mat-card-title>Dados Pessoais</mat-card-title>
+      <button mat-mini-fab color="warn" color="warn" [routerLink]="['']">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <mat-divider inset style="margin-top: 1em;"></mat-divider>
+
+    <form class="example-form" [formGroup]="usuarioForm">
+      <div class="titulo">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Nome</mat-label>
+          <input
+            matInput
+            placeholder="Digite seu nome"
+            formControlName="nome"
+          />
+          <mat-error align="end" *ngIf="usuarioForm.get('nome')?.errors">
+            Nome incorreto, deve possuir mais de 4 letras
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Data de Nascimento</mat-label>
+          <input type="text"  matInput [matDatepicker]="picker" formControlName="dataNascimento"
+            name="dataNascimento">
+          <mat-error>Escolha a Data de Nascimento</mat-error>
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+          <mat-datepicker touchUi #picker ></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="titulo">
+        <mat-form-field id="cpf" class="example-full-width" appearance="outline">
+          <mat-label>CPF</mat-label>
+          <input matInput placeholder="12345678911" formControlName="cpf" />
+          <mat-hint align="start">
+            <strong>Digite apenas números</strong>
+          </mat-hint>
+          <mat-error align="end" *ngIf="usuarioForm.get('cpf')?.errors?.['cpfCadastrado']">
+            CPF Ja Cadastrado na base de dados
+          </mat-error>
+          <mat-error align="end" *ngIf="usuarioForm.get('cpf')?.errors?.['required'] ">
+            CPF obrigatório
+          </mat-error>
+          <mat-error align="end" *ngIf="usuarioForm.get('cpf')?.errors?.['cpfInvalido']
+          && usuarioForm.get('cpf')?.errors&& !usuarioForm.get('cpf')?.errors?.['required']">
+            CPF Invalido
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>RG</mat-label>
+          <input matInput placeholder="xxxxxx-x" formControlName="rg"/>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>NIS</mat-label>
+          <input matInput placeholder="12345678911"  disabled/>
+        </mat-form-field>
+      </div>
+
+      <div class="titulo">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Nome da Mãe</mat-label>
+            <input matInput formControlName="mae" />
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Nome do Pai</mat-label>
+            <input matInput  formControlName="pai" />
+          </mat-form-field>
+      </div>
+
+      <div class="titulo">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input
+              matInput
+              [type]="hide ? 'password' : 'text'"
+              formControlName="senha"
+            />
+            <span
+              mat-icon-button
+              matSuffix
+              (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide"
+            >
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </span>
+            <mat-error align="end" *ngIf="usuarioForm.get('senha')?.errors && !usuarioForm.get('senha')?.errors?.['required'] ">
+              Senha invalida, no minimo 8 carcaters
+            </mat-error>
+            <mat-error align="end"  *ngIf="usuarioForm.get('senha')?.errors?.['required']">
+              Senha não pode estar fazia
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Confirme a Senha</mat-label>
+            <input
+              matInput
+              [type]="hide ? 'password' : 'text'"
+              disabled
+            />
+            <span
+              mat-icon-button
+              matSuffix
+              (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide"
+            >
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </span>
+            <mat-error align="end">
+              Senha não confere.
+            </mat-error>
+          </mat-form-field>
+      </div>
+
+      <div>
+        <button mat-raised-button (click)="cadastrar()">Salvar</button>
+      </div>
+
+    </form>
+  </mat-card>
+</div>

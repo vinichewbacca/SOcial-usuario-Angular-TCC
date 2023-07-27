@@ -1,0 +1,30 @@
+.login{
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 5em;
+
+ }
+
+ .card{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+ }
+ .example-form {
+   min-width: 150px;
+   max-width: 700px;
+   width: 100%;
+ }
+
+ .example-full-width {
+   width: 100%;
+   padding-bottom: 3px;
+ }
+
+ #cpf {
+  padding-bottom: 1.5em;
+ }
+
+
+

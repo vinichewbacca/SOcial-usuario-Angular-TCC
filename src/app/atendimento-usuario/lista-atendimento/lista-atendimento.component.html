@@ -1,0 +1,29 @@
+<mat-tab-group mat-align-tabs="center" animationDuration="1000ms">
+  <mat-tab label="Todos">
+    <div class="content">
+      <div *ngFor="let atendimento of listaAtendimento">
+        <app-cartao [cartaoAtendimento]="atendimento"></app-cartao>
+      </div>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Cadastro Único">
+    <div class="content">
+      <div *ngFor="let atendimento of listaAtendimento">
+        <div *ngIf="atendimento.tipoAtendimento === 'CADUNICO'">
+          <app-cartao [cartaoAtendimento]="atendimento"></app-cartao>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Serviço Social">
+    <div class="content">
+      <div *ngFor="let atendimento of listaAtendimento">
+        <div *ngIf="atendimento.tipoAtendimento === 'SERVSOCIAL'">
+          <app-cartao [cartaoAtendimento]="atendimento"></app-cartao>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>

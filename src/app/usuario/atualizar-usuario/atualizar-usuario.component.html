@@ -1,0 +1,101 @@
+<div class="container">
+  <mat-card class="card">
+    <div class="titulo">
+      <mat-card-title>Atualizar Dados</mat-card-title>
+      <button mat-mini-fab color="warn" color="warn" [routerLink]="['','atendimento']">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <mat-divider inset style="margin-top: 1em;"></mat-divider>
+
+    <form class="example-form" [formGroup]="usuarioForm">
+      <div class="titulo">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Nome</mat-label>
+          <input
+            matInput
+            placeholder="Digite seu nome"
+            formControlName="nome"
+          />
+          <mat-error align="end" *ngIf="usuarioForm.get('nome')?.errors">
+            Nome incorreto, deve possuir mais de 4 letras
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Data de Nascimento</mat-label>
+          <input type="text"  matInput [matDatepicker]="picker" formControlName="dataNascimento"
+            name="dataNascimento">
+          <mat-error>Escolha a Data de Nascimento</mat-error>
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+          <mat-datepicker touchUi #picker ></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="titulo">
+        <mat-form-field id="cpf" class="example-full-width" appearance="outline">
+          <mat-label>CPF</mat-label>
+          <input matInput placeholder="12345678911" formControlName="cpf" />
+          <mat-hint align="start">
+            <strong>Digite apenas números</strong>
+          </mat-hint>
+          <mat-error align="end" *ngIf="usuarioForm.get('cpf')?.errors?.['required'] ">
+            CPF obrigatório
+          </mat-error>
+          <mat-error align="end" *ngIf="usuarioForm.get('cpf')?.errors?.['cpfInvalido']
+          && usuarioForm.get('cpf')?.errors&& !usuarioForm.get('cpf')?.errors?.['required']">
+            CPF Invalido
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>RG</mat-label>
+          <input matInput placeholder="xxxxxx-x" formControlName="rg"/>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>NIS</mat-label>
+          <input matInput formControlName="nis" placeholder="12345678911" />
+        </mat-form-field>
+      </div>
+
+      <div class="titulo">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Nome da Mãe</mat-label>
+          <input matInput formControlName="mae" />
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Nome do Pai</mat-label>
+          <input matInput  formControlName="pai" />
+        </mat-form-field>
+    </div>
+
+    <div class="titulo">
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Desculpe mas essa funcionalidade ainda não esta feita</mat-label>
+        <input
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          disabled
+        />
+        <span
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </span>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <button mat-raised-button (click)="atualizarUsuario()">Atualizar</button>
+    </div>
+    </form>
+  </mat-card>
+</div>

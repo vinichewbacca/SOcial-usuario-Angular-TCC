@@ -1,0 +1,107 @@
+<header>
+
+  <mat-toolbar color="primary"  class="head">
+    <span [routerLink]="['','atendimento']">SOcial</span>
+    <span class="example-spacer"></span>
+
+    <div *ngIf="usuario$ | async as usuario">
+      <div *ngIf="usuario.nome != '' && usuario.nome != null; else logado">
+
+        <div *ngIf="usuario.perfil != 'ROLE_TECNICO'; else tecnico">
+          <span>{{usuario.nome}}</span>
+
+          <button
+            mat-icon-button
+            [matMenuTriggerFor]="menu"
+            class="example-icon favorite-icon"
+            aria-label="Example icon-button with heart icon"
+          >
+            <mat-icon>menu</mat-icon>
+          </button>
+
+          <mat-menu #menu="matMenu" >
+            <button mat-menu-item [routerLink]="['atendimento','novoAtendimento',usuario.id]">
+              <mat-icon>event</mat-icon>
+              Agendar Atendimento
+            </button>
+            <button mat-menu-item [routerLink]="[usuario.id]">
+              <mat-icon>person</mat-icon>
+              Meu Perfil
+            </button>
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>logout</mat-icon>
+              Sair
+            </button>
+          </mat-menu>
+        </div>
+
+      </div>
+
+      <ng-template #tecnico>
+        <span>{{usuario.nome}}</span>
+
+          <button
+            mat-icon-button
+            [matMenuTriggerFor]="menu"
+            class="example-icon favorite-icon"
+            aria-label="Example icon-button with heart icon"
+          >
+            <mat-icon>menu</mat-icon>
+          </button>
+
+          <mat-menu #menu="matMenu" >
+            <button mat-menu-item [matMenuTriggerFor]="usuarios">
+              <mat-icon>people</mat-icon>
+              Usuario
+            </button>
+            <button mat-menu-item [routerLink]="['','construcao']">
+              <mat-icon>assignment</mat-icon>
+              Relatorios
+            </button>
+            <button mat-menu-item [routerLink]="['', 'construcao']">
+              <mat-icon>person</mat-icon>
+              Meu Perfil
+            </button>
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>logout</mat-icon>
+              Sair
+            </button>
+          </mat-menu>
+
+          <mat-menu #usuarios="matMenu">
+            <button mat-menu-item [routerLink]="['buscaUsuario']">
+              <mat-icon>person_search</mat-icon>
+              Buscar
+            </button>
+            <button mat-menu-item [routerLink]="['novoEndereco']">
+              <mat-icon>person_add_alt</mat-icon>
+              Cadastrar
+            </button>
+          </mat-menu>
+      </ng-template>
+
+    </div>
+  </mat-toolbar>
+
+  <ng-template #logado>
+    <button
+    mat-icon-button
+    [matMenuTriggerFor]="menu"
+    class="example-icon favorite-icon"
+    aria-label="Example icon-button with heart icon"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+    <mat-menu #menu="matMenu" >
+      <button mat-menu-item [routerLink]="['novoEndereco']">
+        <mat-icon t-icon>person_add</mat-icon>
+        Cadastrar
+      </button>
+      <button mat-menu-item [routerLink]="['', 'construcao']">
+        <mat-icon>logout</mat-icon>
+        Sobre
+      </button>
+    </mat-menu>
+  </ng-template>
+
+</header>

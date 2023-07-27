@@ -1,0 +1,33 @@
+<div *ngIf="usuario$ | async as usuario">
+  <div  *ngIf="usuario.perfil === 'ROLE_USUARIO'; else tecnico">
+    <h1 mat-dialog-title>SOcial</h1>
+
+    <div mat-dialog-content>
+      <p>Para <b>Excluir</b> ou <b>Cancelar</b> o atendimento
+        Referente ao <b *ngIf="agendamento.tipoAtendimento === 'CADUNICO'; else servSocial">Cadastro Único</b> entre em contato com o
+      CRAS pelo telefone: <strong>67 - XXXXX XXXX</strong>.</p>
+      <p>E solicite o cancelamento. Obrigado!</p>
+      <ng-template #servSocial>
+        <b>Serviço Social</b>
+      </ng-template>
+    </div>
+
+    <div mat-dialog-actions>
+      <button mat-stroked-button mat-dialog-close mat-dialog>Fechar</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #tecnico>
+  <h1 mat-dialog-title>Cancelar Atendimento</h1>
+
+  <div mat-dialog-content>
+    <p>Deseja Realmente Cancelar o Atendimento</p>
+    <p>Referente ao usuario <b>{{agendamento.nome}}</b></p>
+  </div>
+
+  <div mat-dialog-actions *ngIf="usuario$ | async as usuario">
+    <button mat-stroked-button  mat-dialog-close (click)="cancelarAgendamento(usuario.id!)">Sim</button>
+    <button mat-stroked-button mat-dialog-close mat-dialog>Não</button>
+  </div>
+</ng-template>

@@ -1,0 +1,62 @@
+<div class="container">
+  <mat-card class="card">
+    <div class="titulo">
+      <mat-card-title>Atualizar Endereco</mat-card-title>
+      <button mat-mini-fab color="warn" color="warn" [routerLink]="['','atendimento']">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <mat-divider inset style="margin-top: 1em;"></mat-divider>
+
+    <form class="example-form" [formGroup]="enderecoForm">
+      <div class="titulo">
+        <mat-form-field appearance="outline">
+          <mat-label>CEP</mat-label>
+          <input matInput type="text" placeholder="XXXXXXXX" formControlName="cep" (blur)="buscaCep()" required/>
+            <mat-hint align="start">
+              <strong>Digite apenas números</strong>
+            </mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Logradouro</mat-label>
+          <input matInput type="text" placeholder="Rua, Avenida, Viela ..." formControlName="logradouro" >
+        </mat-form-field>
+      </div>
+
+      <div class="titulo">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Bairro</mat-label>
+          <input matInput  type="text" placeholder="Nome do bairro" formControlName="bairro">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Número</mat-label>
+          <input matInput type="text" placeholder="Somente Numero" formControlName="numero">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Complemento</mat-label>
+          <input matInput type="text" placeholder="Fundos, Casa 3, Apt ..." formControlName="complemento">
+        </mat-form-field>
+      </div>
+
+      <div class="titulo">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Cidade</mat-label>
+          <input matInput type="text" placeholder="Nome da Cidade" formControlName="cidade">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>UF</mat-label>
+          <input matInput type="text" placeholder="Estado" formControlName="uf">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <button mat-raised-button color="primary" (click)="atualizarEndereco()">Atualizar</button>
+      </div>
+    </form>
+  </mat-card>
+</div>

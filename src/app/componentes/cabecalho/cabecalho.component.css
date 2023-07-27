@@ -1,0 +1,10 @@
+@media (max-width: 720px) {
+  .head{
+    height: 4em;
+    display: flex;
+    flex-direction: column;
+  }
+}
+.example-spacer {
+  flex: 1 1 auto;
+}

@@ -1,0 +1,78 @@
+<div class="container" *ngIf="usuario$ | async as usuario">
+
+  <mat-card class="card">
+    <div class="titulo" >
+      <mat-card-title>Dados Pessoais</mat-card-title>
+      <button mat-mini-fab color="warn" color="warn" [routerLink]="['','atendimento']">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <mat-divider inset style="margin-top: 1em;"></mat-divider>
+
+    <mat-card-content>
+      <div class="titulo">
+        <p class="paragrafo">Nome: <span>{{usuario.nome}}</span></p>
+        <p class="paragrafo">Data Nascimento: <span>{{usuario.dataNascimento | date: 'dd/MM/yyyy'}}</span></p>
+      </div>
+
+      <div class="titulo">
+        <p class="paragrafo">Mãe: <span *ngIf="usuario.mae != null && usuario.mae; else naoDeclarado">{{usuario.mae}}</span></p>
+        <p class="paragrafo">Pai: <span *ngIf="usuario.pai != null && usuario.pai; else naoDeclarado">{{usuario.pai}}</span></p>
+      </div>
+
+      <div class="titulo">
+        <p class="paragrafo">RG: <span>{{usuario.rg}}</span></p>
+        <p class="paragrafo">CPF: <span>{{usuario.cpf}}</span></p>
+        <p class="paragrafo">NIS: <span *ngIf="usuario.nis != null; else naoDeclarado">{{usuario.nis}}</span></p>
+      </div>
+
+      <mat-divider inset style="margin-top: 1em;"></mat-divider>
+
+      <mat-card-actions>
+        <button (click)="atualizarUsuario()"  mat-raised-button color="primary">
+          Atualizar Dados<mat-icon>edit</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card-content>
+
+  </mat-card>
+
+  <mat-card class="card">
+    <div class="titulo" >
+      <mat-card-title>Endereço</mat-card-title>
+    </div>
+
+    <mat-divider inset style="margin-top: 1em;"></mat-divider>
+
+    <mat-card-content>
+      <div class="titulo">
+        <p class="paragrafo">Logradouro: <span>{{usuario.endereco?.logradouro}}</span></p>
+        <p class="paragrafo">Número: <span>{{usuario.endereco?.numero}}</span></p>
+      </div>
+
+      <div class="titulo">
+        <p class="paragrafo">Bairro: <span>{{usuario.endereco?.bairro}}</span></p>
+        <p class="paragrafo">Complemento: <span>{{usuario.endereco?.complemento}}</span></p>
+      </div>
+
+      <div class="titulo">
+        <p class="paragrafo">CEP: <span>{{usuario.endereco?.cep}}</span></p>
+        <p class="paragrafo">Cidade: <span>{{usuario.endereco?.cidade}}</span></p>
+        <p class="paragrafo">UF: <span>{{usuario.endereco?.uf}}</span></p>
+      </div>
+    </mat-card-content>
+
+    <mat-divider inset style="margin-top: 1em;"></mat-divider>
+
+      <mat-card-actions>
+        <button  (click)="atualizarEndereco(usuario.endereco?.id!)"  mat-raised-button color="primary">
+          Atualizar Endereço<mat-icon>edit</mat-icon>
+        </button>
+      </mat-card-actions>
+  </mat-card>
+
+  <ng-template #naoDeclarado>
+    <span>Não declarado</span>
+  </ng-template>
+</div>
