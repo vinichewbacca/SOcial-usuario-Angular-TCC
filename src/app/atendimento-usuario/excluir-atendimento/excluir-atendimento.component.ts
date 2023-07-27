@@ -21,14 +21,6 @@ export class ExcluirAtendimentoComponent implements OnInit {
   @Input() agendamento!: Atendimento;
   ngOnInit(): void {}
 
-  excluirAgendamento(idUsuario: number): void {
-    this.atendimentoService
-      .excluirAgendamento(this.agendamento.id as number, this.agendamento, idUsuario)
-      .subscribe(() => {
-        this.route.navigate(['atendimento', '']);
-      });
-  }
-
   cancelarAgendamento(idTecnico: number): void {
     this.atendimentoService
       .cancelaAgendamento(this.agendamento.id as number, this.agendamento, idTecnico)

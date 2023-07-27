@@ -89,18 +89,6 @@ export class AtendimentoService {
     );
   }
 
-  //Exclui um atendimento agendado
-  excluirAgendamento(
-    idAtendimento: number,
-    atendimento: Atendimento,
-    idUsuario: number
-  ): Observable<Atendimento> {
-    return this.http.put<Atendimento>(
-      `${API}/atendimento/usuario/cancela/id=${idAtendimento}&idUsuario=${idUsuario}`,
-      atendimento
-    );
-  }
-
   //Atualizar um atendimento agendado
   atualizarUsuario(idAtendimento: number, antedimento: Atendimento) {
     return this.http.put<Atendimento>(
