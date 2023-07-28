@@ -76,8 +76,8 @@ export class AtendimentoTecnicoComponent implements OnInit {
   ];
 
   servsocial: string[] = [
-    'Solicitação Kit Natalidade',
-    'Solicitação Kit Emergencial',
+    'Solicitação Auxilio Natalidade',
+    'Solicitação Auxilio Emergencial',
     'BPC/Idoso',
     'BPC/PCD',
     'Passe Intermunicipal/Idoso',
