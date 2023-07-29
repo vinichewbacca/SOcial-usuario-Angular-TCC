@@ -18,6 +18,11 @@ const routes: Routes = [
     path:'atendimento',
     loadChildren:()=> import('./atendimento-usuario/atendimento-usuario.module').then((m)=>m.AtendimentoUsuarioModule),
     canLoad:[AutenticacaoGuard]
+  },
+  {
+    path:'relatorios',
+    loadChildren:()=> import('./relatorios/relatorios/relatorios.module').then((m)=>m.RelatoriosModule),
+    canLoad:[AutenticacaoGuard]
   }
 ];
 

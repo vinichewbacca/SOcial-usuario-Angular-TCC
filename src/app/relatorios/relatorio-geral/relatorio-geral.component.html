@@ -1,0 +1,34 @@
+<div class="container">
+  <mat-card class="card">
+      <div class="titulo">
+          <mat-card-title>Relatorio Geral</mat-card-title>
+          <button mat-mini-fab color="warn" color="warn" [routerLink]="['','atendimento']">
+            <mat-icon>close</mat-icon>
+          </button>
+      </div>
+
+      <mat-divider inset style="margin-top: 1em;"></mat-divider>
+
+      <div class="datapicker">
+        <mat-form-field appearance="outline">
+          <mat-label>Digite o Periodo desejado</mat-label>
+          <mat-date-range-input  [rangePicker]="picker">
+            <input matStartDate  placeholder="Data Inicial" disabled>
+            <input matEndDate placeholder="Data Final" disabled>
+          </mat-date-range-input>
+          <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
+          <mat-date-range-picker touchUi #picker disabled="false"></mat-date-range-picker>
+        </mat-form-field>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      </div>
+      <div class="datapicker" >
+        <button style="width: 26%;" mat-raised-button color="primary" (click)="buscarRelatorio()">Gerar Relatorio</button>
+      </div>
+
+      <mat-divider inset style="margin-top: 0.5em;"></mat-divider>
+
+
+  </mat-card>
+</div>
+
+
