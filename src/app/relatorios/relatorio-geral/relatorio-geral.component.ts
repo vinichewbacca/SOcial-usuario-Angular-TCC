@@ -17,6 +17,7 @@ export class RelatorioGeralComponent implements OnInit {
 
   relatorioForm!: FormGroup;
   relatorio$!: Observable<Relatorio>;
+
   ngOnInit(): void {
     this.relatorioForm = this.formbuilder.group({
       dataInicial: [''],
@@ -27,8 +28,7 @@ export class RelatorioGeralComponent implements OnInit {
   }
 
   buscarRelatorio() {
-
-    const novo = this.relatorioForm.getRawValue() as Relatorio;
-    this.relatorio$ = this.relatorioService.relatorioGeral(novo);
+    const formulario = this.relatorioForm.getRawValue() as Relatorio;
+    this.relatorio$ = this.relatorioService.relatorioGeral(formulario);
   }
 }

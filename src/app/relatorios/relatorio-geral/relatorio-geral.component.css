@@ -17,6 +17,13 @@
   font-weight: 800;
 }
 
+.relatorio{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  column-gap: 1em;
+}
+
 .datapicker{
   margin-top: 1em;
   display: flex;
@@ -30,3 +37,10 @@
   padding-bottom: 3px;
 
 }
+
+h2 {
+  display: flex;
+  justify-content: center;
+}
+
+

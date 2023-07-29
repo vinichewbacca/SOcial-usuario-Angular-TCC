@@ -27,11 +27,100 @@
 
       <mat-divider inset style="margin-top: 0.5em;"></mat-divider>
 
-      <div *ngIf=" relatorio$ | async as r">
-        <p>Total Atendimentos: {{r.totalAtendimento}}</p>
-      </div>
+      <mat-card-content *ngIf=" relatorio$ | async as r">
+        <div>
+          <h2>Serviço Social</h2>
+          <div class="relatorio">
+            <p>Solicitação Auxilio Natalidade</p>
+            <p>{{r.kitNatal}}</p>
+          </div>
+          <div class="relatorio">
+            <p>Solicitação Auxilio Emergencial</p>
+            <p>{{r.kitEmerg}}</p>
+          </div>
+          <div class="relatorio">
+            <p>BPC/Idoso</p>
+            <p>{{r.bpcIdoso}}</p>
+          </div>
+          <div class="relatorio">
+            <p>BPC/PCD</p>
+            <p>{{r.bpcPcd}}</p>
+          </div>
+          <div class="relatorio">
+            <p>Passe Intermunicipal/Idoso</p>
+            <p>{{r.intermIdoso}}</p>
+          </div>
+          <div class="relatorio">
+            <p>Passe Intermunicipal/PCD</p>
+            <p>{{r.intermPcd}}</p>
+          </div>
+          <div class="relatorio">
+            <p>Passe Interestadual/Idoso</p>
+            <p>{{r.interesIdoso}}</p>
+          </div>
+          <div class="relatorio">
+            <p>Passe Interestadual/PCD</p>
+            <p>{{r.interesPcd}}</p>
+          </div>
+          <div class="relatorio">
+            <p>Atendimento Psicossocial</p>
+            <p>{{r.atdPsico}}</p>
+          </div>
+          <div class="relatorio">
+            <p>Inserção em SCFV</p>
+            <p>{{r.insercaoScfv}}</p>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="titulo">
+            <p>Total</p>
+            <p>{{r.servSocial}}</p>
+          </div>
+        </div>
 
+        <div>
+          <h2>Cadastro Unico</h2>
+          <div class="relatorio">
+            <p>Cadastro Novo</p>
+            <p>{{r.cadNovo}}</p>
+          </div>
+          <div class="relatorio">
+            <p>Atualização de Cadastro</p>
+            <p>{{r.cadAtualiza}}</p>
+          </div>
+          <div class="relatorio">
+            <p>Consulta SIBEC</p>
+            <p>{{r.consultaSibec}}</p>
+          </div>
+          <div class="relatorio">
+            <p>Emissão v7</p>
+            <p>{{r.v7}}</p>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="titulo">
+            <p>Total</p>
+            <p>{{r.cadUnico}}</p>
+          </div>
+        </div>
 
+        <div>
+          <h2>Orientaçoes e Outros</h2>
+          <div class="relatorio">
+            <p>Orientações</p>
+            <p>{{r.orientacoes}}</p>
+          </div>
+          <div class="relatorio">
+            <p>Outros</p>
+            <p>{{r.outros}}</p>
+          </div>
+        </div>
+
+        <mat-divider inset style="margin-top: 1em;"></mat-divider>
+
+        <div class="titulo">
+          <h3>Total De Atendimentos</h3>
+          <h3>{{r.totalAtendimento}}</h3>
+        </div>
+      </mat-card-content>
   </mat-card>
 </div>
 
