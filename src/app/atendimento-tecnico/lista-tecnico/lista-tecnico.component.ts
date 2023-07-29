@@ -1,4 +1,3 @@
-import { Atendimentos } from './../../atendimento/atendimento';
 import { Component, OnInit } from '@angular/core';
 import { AtendimentoService } from 'src/app/atendimento/atendimento.service';
 

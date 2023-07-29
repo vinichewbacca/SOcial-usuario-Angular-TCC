@@ -12,9 +12,9 @@
       <div class="datapicker">
         <mat-form-field appearance="outline">
           <mat-label>Digite o Periodo desejado</mat-label>
-          <mat-date-range-input  [rangePicker]="picker">
-            <input matStartDate  placeholder="Data Inicial" disabled>
-            <input matEndDate placeholder="Data Final" disabled>
+          <mat-date-range-input [formGroup]="relatorioForm" [rangePicker]="picker">
+            <input matStartDate formControlName="dataInicial" placeholder="Data Inicial">
+            <input matEndDate formControlName="dataFinal" placeholder="Data Final">
           </mat-date-range-input>
           <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
           <mat-date-range-picker touchUi #picker disabled="false"></mat-date-range-picker>
@@ -26,6 +26,10 @@
       </div>
 
       <mat-divider inset style="margin-top: 0.5em;"></mat-divider>
+
+      <div *ngIf=" relatorio$ | async as r">
+        <p>Total Atendimentos: {{r.totalAtendimento}}</p>
+      </div>
 
 
   </mat-card>

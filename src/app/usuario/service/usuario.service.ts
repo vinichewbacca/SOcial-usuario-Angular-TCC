@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Usuario, Usuarios } from '../usuario';
 import { TokenService } from 'src/app/token/token.service';
 import jwtDecode from 'jwt-decode';
