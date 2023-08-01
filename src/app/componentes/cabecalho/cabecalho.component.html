@@ -54,7 +54,7 @@
               <mat-icon>people</mat-icon>
               Usuario
             </button>
-            <button mat-menu-item [routerLink]="['relatorios','relatorioGeral']">
+            <button mat-menu-item [matMenuTriggerFor]="relatorios">
               <mat-icon>assignment</mat-icon>
               Relatorios
             </button>
@@ -76,6 +76,21 @@
             <button mat-menu-item [routerLink]="['novoEndereco']">
               <mat-icon>person_add_alt</mat-icon>
               Cadastrar
+            </button>
+          </mat-menu>
+
+          <mat-menu #relatorios="matMenu">
+            <button mat-menu-item [routerLink]="['relatorios','relatorioGeral']">
+              <mat-icon>assignment</mat-icon>
+              Relatório Geral
+            </button>
+            <button mat-menu-item [routerLink]="['relatorios','relatorioTipo']">
+              <mat-icon>assignment</mat-icon>
+              Relatório Tipo de Atendimmento
+            </button>
+            <button mat-menu-item [routerLink]="['relatorios','relatorioTecnico']">
+              <mat-icon>assignment</mat-icon>
+              Relatório por Técnico
             </button>
           </mat-menu>
       </ng-template>

@@ -1,0 +1,110 @@
+<div class="container">
+  <mat-card class="card">
+    <div class="titulo">
+      <mat-card-title>Relatorio Por Tipo de Atendimento</mat-card-title>
+      <button mat-mini-fab color="warn" color="warn" [routerLink]="['','atendimento']">
+        <mat-icon>close</mat-icon>
+      </button>
+  </div>
+
+  <mat-divider inset style="margin-top: 1em;"></mat-divider>
+
+  <div class="datapicker">
+    <mat-form-field appearance="outline">
+      <mat-label>Digite o Periodo desejado</mat-label>
+      <mat-date-range-input [formGroup]="relatorioForm" [rangePicker]="picker">
+        <input matStartDate formControlName="dataInicial" placeholder="Data Inicial">
+        <input matEndDate formControlName="dataFinal" placeholder="Data Final">
+      </mat-date-range-input>
+      <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
+      <mat-date-range-picker touchUi #picker disabled="false"></mat-date-range-picker>
+    </mat-form-field>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  </div>
+
+  <div class="datapicker" style="column-gap: 0.5em;">
+    <button style="width: 20%;" mat-raised-button color="primary" (click)="buscarRelatorio('cadUnico')">Relatorio Cadastro Único</button>
+    <button style="width: 20%;" mat-raised-button color="primary" (click)="buscarRelatorio('servSocial')">Relatorio Serviço Social</button>
+  </div>
+
+  <mat-divider inset style="margin-top: 0.5em;"></mat-divider>
+
+  <mat-card-content *ngIf=" relatorio$ | async as r">
+    <div *ngIf="tipoAtendimento === 'servSocial'; else cadUnico">
+      <h2>Serviço Social</h2>
+      <div class="relatorio">
+        <p>Solicitação Auxilio Natalidade</p>
+        <p>{{r.kitNatal}}</p>
+      </div>
+      <div class="relatorio">
+        <p>Solicitação Auxilio Emergencial</p>
+        <p>{{r.kitEmerg}}</p>
+      </div>
+      <div class="relatorio">
+        <p>BPC/Idoso</p>
+        <p>{{r.bpcIdoso}}</p>
+      </div>
+      <div class="relatorio">
+        <p>BPC/PCD</p>
+        <p>{{r.bpcPcd}}</p>
+      </div>
+      <div class="relatorio">
+        <p>Passe Intermunicipal/Idoso</p>
+        <p>{{r.intermIdoso}}</p>
+      </div>
+      <div class="relatorio">
+        <p>Passe Intermunicipal/PCD</p>
+        <p>{{r.intermPcd}}</p>
+      </div>
+      <div class="relatorio">
+        <p>Passe Interestadual/Idoso</p>
+        <p>{{r.interesIdoso}}</p>
+      </div>
+      <div class="relatorio">
+        <p>Passe Interestadual/PCD</p>
+        <p>{{r.interesPcd}}</p>
+      </div>
+      <div class="relatorio">
+        <p>Atendimento Psicossocial</p>
+        <p>{{r.atdPsico}}</p>
+      </div>
+      <div class="relatorio">
+        <p>Inserção em SCFV</p>
+        <p>{{r.insercaoScfv}}</p>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="titulo">
+        <p>Total</p>
+        <p>{{r.servSocial}}</p>
+      </div>
+    </div>
+
+    <ng-template #cadUnico>
+      <div>
+        <h2>Cadastro Unico</h2>
+        <div class="relatorio">
+          <p>Cadastro Novo</p>
+          <p>{{r.cadNovo}}</p>
+        </div>
+        <div class="relatorio">
+          <p>Atualização de Cadastro</p>
+          <p>{{r.cadAtualiza}}</p>
+        </div>
+        <div class="relatorio">
+          <p>Consulta SIBEC</p>
+          <p>{{r.consultaSibec}}</p>
+        </div>
+        <div class="relatorio">
+          <p>Emissão v7</p>
+          <p>{{r.v7}}</p>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="titulo">
+          <p>Total</p>
+          <p>{{r.cadUnico}}</p>
+        </div>
+      </div>
+    </ng-template>
+  </mat-card-content>
+</mat-card>
+</div>
