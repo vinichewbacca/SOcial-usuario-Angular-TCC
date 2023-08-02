@@ -1,6 +1,7 @@
 export interface Relatorio {
   dataInicial?: Date;
   dataFinal?: Date;
+  idTecnico?: number;
 
   totalAtendimento?: number;
   totalAtencimentoCancel?: number;

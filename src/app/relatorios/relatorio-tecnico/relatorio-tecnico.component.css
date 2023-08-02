@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 5em 1em;
+}
+.card {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.titulo{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  column-gap: 1em;
+  font-weight: 800;
+}
+
+.relatorio{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  column-gap: 1em;
+}
+
+.datapicker{
+  margin-top: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  font-weight: 800;
+  column-gap: 2em;
+}
+
+.example-full-width {
+  width: 100%;
+  padding-bottom: 3px;
+
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+}
+
+

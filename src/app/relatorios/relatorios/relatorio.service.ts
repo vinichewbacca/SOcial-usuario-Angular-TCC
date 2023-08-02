@@ -18,6 +18,12 @@ export class RelatorioService {
     return this.http.get<Relatorio>(`${API}/relatorios/1a/di${di}$df${df}`);
   }
 
+  /*--Cria o Relatório por Técnico--*/
+  relatorioTecnico(formulario: Relatorio): Observable<Relatorio>{
+    let di = this.convertData(formulario.dataInicial)
+    let df = this.convertData(formulario.dataFinal)
+    return this.http.get<Relatorio>(`${API}/relatorios/2a/di${di}$df${df}/tecnico${formulario.idTecnico}`)
+  }
   /*função para converter data*/
   convertData(data: any): string {
     function pad(number: number) {
