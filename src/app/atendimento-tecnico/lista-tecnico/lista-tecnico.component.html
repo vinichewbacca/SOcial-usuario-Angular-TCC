@@ -1,42 +1,88 @@
-<mat-tab-group mat-align-tabs="center" animationDuration="1000ms">
-  <mat-tab label="{{data | date: 'dd/MM/yyyy'}}">
-    <div class="content" *ngIf="listaAgendamento$ | async as listaAgendamento">
-      <div *ngFor="let atendimento of listaAgendamento">
-        <app-cartao [cartaoAtendimento]="atendimento"></app-cartao>
-      </div>
-    </div>
-  </mat-tab>
+<div *ngIf="tecnico$ | async as tecnico">
+  <div [ngSwitch]="tecnico.cargo">
 
-  <mat-tab label="Cadastro Unico">
-    <div class="content" *ngIf="listaCadUnico$ | async as listaCadUnico">
-      <div *ngFor="let atendimento of listaCadUnico">
-        <app-cartao [cartaoAtendimento]="atendimento"></app-cartao>
+    <span *ngSwitchCase="'ASSISTENTESOCIAL'">
+      <div class="content" *ngIf=" listaTecnico$ | async as listaTecnico">
+        <div *ngFor="let atendimento of listaTecnico">
+          <app-cartao [cartaoAtendimento]="atendimento"></app-cartao>
+        </div>
       </div>
-    </div>
-  </mat-tab>
+    </span>
 
-  <mat-tab label="Serviço Social" >
-    <div class="content" *ngIf="listaSocial$ | async as listaSocial">
-      <div *ngFor="let atendimento of listaSocial">
-        <app-cartao [cartaoAtendimento]="atendimento"></app-cartao>
+    <span *ngSwitchCase="'CADUNICO'">
+      <div class="content" *ngIf=" listaTecnico$ | async as listaTecnico">
+        <div *ngFor="let atendimento of listaTecnico">
+          <app-cartao [cartaoAtendimento]="atendimento"></app-cartao>
+        </div>
       </div>
-    </div>
-  </mat-tab>
+    </span>
 
-  <mat-tab label="Encaminhados">
-    <div class="content" *ngIf=" listaEncaminhados$ | async as lista">
-      <div *ngFor="let atendimento of lista">
-
-        <app-cartao [cartaoAtendimento]="atendimento"></app-cartao>
+    <span *ngSwitchCase="'PSICOLOGO'">
+      <div class="content" *ngIf=" listaTecnico$ | async as listaTecnico">
+        <div *ngFor="let atendimento of listaTecnico">
+          <app-cartao [cartaoAtendimento]="atendimento"></app-cartao>
+        </div>
       </div>
-    </div>
-  </mat-tab>
+    </span>
 
-  <mat-tab label="Todos">
-    <div class="content" *ngIf="lista$ | async as lista">
-      <div *ngFor="let atendimento of lista">
-        <app-cartao [cartaoAtendimento]="atendimento"></app-cartao>
+    <span *ngSwitchCase="'EDUCADORSOCIAL'">
+      <div class="content" *ngIf=" listaTecnico$ | async as listaTecnico">
+        <div *ngFor="let atendimento of listaTecnico">
+          <app-cartao [cartaoAtendimento]="atendimento"></app-cartao>
+        </div>
       </div>
-    </div>
-  </mat-tab>
-</mat-tab-group>
+    </span>
+
+    <span *ngSwitchCase="'PEDAGOGO'">
+      <div class="content" *ngIf=" listaTecnico$ | async as listaTecnico">
+        <div *ngFor="let atendimento of listaTecnico">
+          <app-cartao [cartaoAtendimento]="atendimento"></app-cartao>
+        </div>
+      </div>
+    </span>
+
+    <span *ngSwitchDefault>
+      <mat-tab-group mat-align-tabs="center" animationDuration="1000ms">
+        <mat-tab label="{{data | date: 'dd/MM/yyyy'}}">
+          <div class="content" *ngIf="listaAgendamento$ | async as listaAgendamento">
+            <div *ngFor="let atendimento of listaAgendamento">
+              <app-cartao [cartaoAtendimento]="atendimento"></app-cartao>
+            </div>
+          </div>
+        </mat-tab>
+
+        <mat-tab label="Cadastro Unico">
+          <div class="content" *ngIf="listaCadUnico$ | async as listaCadUnico">
+            <div *ngFor="let atendimento of listaCadUnico">
+              <app-cartao [cartaoAtendimento]="atendimento"></app-cartao>
+            </div>
+          </div>
+        </mat-tab>
+
+        <mat-tab label="Serviço Social" >
+          <div class="content" *ngIf="listaSocial$ | async as listaSocial">
+            <div *ngFor="let atendimento of listaSocial">
+              <app-cartao [cartaoAtendimento]="atendimento"></app-cartao>
+            </div>
+          </div>
+        </mat-tab>
+
+        <mat-tab label="Encaminhados">
+          <div class="content" *ngIf=" listaEncaminhados$ | async as lista">
+            <div *ngFor="let atendimento of lista">
+              <app-cartao [cartaoAtendimento]="atendimento"></app-cartao>
+            </div>
+          </div>
+        </mat-tab>
+
+        <mat-tab label="Todos">
+          <div class="content" *ngIf="lista$ | async as lista">
+            <div *ngFor="let atendimento of lista">
+              <app-cartao [cartaoAtendimento]="atendimento"></app-cartao>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </span>
+  </div>
+</div>

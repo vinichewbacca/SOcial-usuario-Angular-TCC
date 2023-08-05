@@ -1,29 +1,25 @@
-<mat-card *ngIf="usuario$ | async as usuario">
-  <span *ngIf="usuario.perfil === 'ROLE_USUARIO'; else tecnico">
+<div *ngIf="usuario$ | async as usuario">
+
+  <mat-card *ngIf="usuario.perfil === 'ROLE_USUARIO'; else cardTecnico">
     <mat-card-subtitle *ngIf="cartaoAtendimento.tipoAtendimento === 'SERVSOCIAL'; else CADUNICO">Serviço Social</mat-card-subtitle>
     <ng-template #CADUNICO>
       <mat-card-subtitle>Cadastro Unico</mat-card-subtitle>
     </ng-template>
-  </span>
-  <ng-template #tecnico>
-    <mat-card-title>{{cartaoAtendimento.nome}}</mat-card-title>
-  </ng-template>
 
-  <mat-card-title>
-    <mat-icon>calendar_month</mat-icon>
-    <span>{{cartaoAtendimento.dataAgendamento | date: 'dd/MM/yyyy'}}</span>
-  </mat-card-title>
+    <mat-card-title>
+      <mat-icon>calendar_month</mat-icon>
+      <span>{{cartaoAtendimento.dataAgendamento | date: 'dd/MM/yyyy'}}</span>
+    </mat-card-title>
 
-  <mat-card-content>
-    <mat-icon>schedule</mat-icon>
-    <span> {{cartaoAtendimento.horaAgendamento}}</span>
-    <p> {{cartaoAtendimento.descricaoAtendimento}}</p>
-  </mat-card-content>
+    <mat-card-content>
+      <mat-icon>schedule</mat-icon>
+      <span> {{cartaoAtendimento.horaAgendamento}}</span>
+      <p> {{cartaoAtendimento.descricaoAtendimento}}</p>
+    </mat-card-content>
 
-  <mat-divider inset></mat-divider>
+    <mat-divider inset></mat-divider>
 
-
-    <mat-card-actions *ngIf="usuario.perfil === 'ROLE_USUARIO'; else tecnico1">
+    <mat-card-actions>
       <button
         (click)="atualizarAtendimento(cartaoAtendimento.id!)"
         mat-stroked-button
@@ -39,31 +35,56 @@
         Excluir
       </button>
     </mat-card-actions>
+  </mat-card>
 
-  <ng-template #tecnico1>
-    <mat-card-actions class="botao">
-      <button
-        (click)="encaminharTecnico(cartaoAtendimento.id!)"
-        mat-stroked-button
-        color="primary"
-      >
-        Encaminhar
-      </button>
-      <button
-        (click)="atender(cartaoAtendimento.id!)"
-        mat-stroked-button
-        color="primary"
-      >
-        Atender
-      </button>
-      <button
-      (click)="excluirAtendimento(cartaoAtendimento.id!)"
-        mat-stroked-button
-        color="warn"
-      >
-        Cancelar
-      </button>
-    </mat-card-actions>
+  <ng-template #cardTecnico>
+    <mat-card *ngIf="tecnico$ | async as tecnico">
+      <mat-card-title >{{cartaoAtendimento.nome}}</mat-card-title>
+
+      <mat-card-title class="tecnico">
+        <mat-icon>calendar_month</mat-icon>
+        <span>{{cartaoAtendimento.dataAgendamento | date: 'dd/MM/yyyy'}}</span>
+      </mat-card-title>
+
+      <mat-card-content class="tecnico">
+        <mat-icon>schedule</mat-icon>
+        <span> {{cartaoAtendimento.horaAgendamento}}</span>
+        <p> {{cartaoAtendimento.descricaoAtendimento}}</p>
+      </mat-card-content>
+
+      <span *ngIf="cartaoAtendimento.statusAtendimento === 'ENCAMINHADO'">
+        <mat-card-subtitle class="tecnico">Tecnico: {{cartaoAtendimento.nomeTecnico}}</mat-card-subtitle>
+      </span>
+      <mat-divider inset></mat-divider>
+
+      <mat-card-actions class="botao">
+        <button
+          (click)="encaminharTecnico(cartaoAtendimento.id!)"
+          mat-stroked-button
+          color="primary"
+        >
+          Encaminhar
+        </button>
+
+          <button *ngIf="tecnico.cargo != 'RECEPCAO'"
+            (click)="atender(cartaoAtendimento.id!)"
+            mat-stroked-button
+            color="primary"
+          >
+            Atender
+          </button>
+
+        <button
+        (click)="excluirAtendimento(cartaoAtendimento.id!)"
+          mat-stroked-button
+          color="warn"
+        >
+          Cancelar
+        </button>
+      </mat-card-actions>
+    </mat-card>
   </ng-template>
 
-</mat-card>
+</div>
+
+

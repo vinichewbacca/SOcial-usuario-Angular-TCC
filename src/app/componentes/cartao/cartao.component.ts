@@ -5,6 +5,8 @@ import { ExcluirAtendimentoComponent } from 'src/app/atendimento-usuario/excluir
 import { Atendimento } from 'src/app/atendimento/atendimento';
 import { AtendimentoService } from 'src/app/atendimento/atendimento.service';
 import { UsuarioService } from 'src/app/usuario/service/usuario.service';
+import { switchMap } from 'rxjs';
+import { Usuario } from 'src/app/usuario/usuario';
 
 @Component({
   selector: 'app-cartao',
@@ -23,6 +25,12 @@ export class CartaoComponent implements OnInit {
 
   @Input() cartaoAtendimento!: Atendimento;
   ngOnInit(): void {}
+
+  tecnico$ = this.usuarioService.retornaUsuario().pipe(
+    switchMap((dado: Usuario) => {
+      return this.usuarioService.buscaTecnicoId(dado.id as number);
+    })
+  );
 
   atualizarAtendimento(id: number) {
     this.route.navigate(['atendimento', 'atualizaAtendimento', id]);

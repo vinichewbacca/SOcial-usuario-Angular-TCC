@@ -49,6 +49,13 @@ export class AtendimentoService {
     return this.http.get<Atendimentos>(`${API}/atendimento/tecnico2`);
   }
 
+  //lista todos agendamentos encaminhados para um determinado tecnico
+  listaAtendimentoTecnico(idTecnico: number): Observable<Atendimentos> {
+    return this.http.get<Atendimentos>(
+      `${API}/atendimento/tecnico/${idTecnico}`
+    );
+  }
+
   //Cancela um atendimento
   cancelaAgendamento(
     id: number,

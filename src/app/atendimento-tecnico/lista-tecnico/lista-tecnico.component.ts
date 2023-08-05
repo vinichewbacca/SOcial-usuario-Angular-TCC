@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { switchMap } from 'rxjs';
+import { Atendimentos } from 'src/app/atendimento/atendimento';
 import { AtendimentoService } from 'src/app/atendimento/atendimento.service';
+import { UsuarioService } from 'src/app/usuario/service/usuario.service';
+import { Usuario } from 'src/app/usuario/usuario';
 
 @Component({
   selector: 'app-lista-tecnico',
@@ -7,11 +11,26 @@ import { AtendimentoService } from 'src/app/atendimento/atendimento.service';
   styleUrls: ['./lista-tecnico.component.css'],
 })
 export class ListaTecnicoComponent implements OnInit {
-  constructor(private atendimentoService: AtendimentoService) {}
+  constructor(
+    private atendimentoService: AtendimentoService,
+    private usuarioService: UsuarioService
+  ) {}
   data = new Date();
 
   ngOnInit(): void {}
 
+  tecnico$ = this.usuarioService.retornaUsuario().pipe(
+    switchMap((usuario: Usuario) => {
+      return this.usuarioService.buscaTecnicoId(usuario.id as number);
+    })
+  );
+
+  //lista os agendamentos do tecnico logado no sistema
+  listaTecnico$ = this.usuarioService.retornaUsuario().pipe(
+    switchMap((user: Usuario) => {
+      return this.atendimentoService.listaAtendimentoTecnico(user.id as number);
+    })
+  );
   //lista os agendamentos do dia
   listaAgendamento$ = this.atendimentoService.listaAtendimentoDataAtual();
   //lista os agendamentos do dia por tipo

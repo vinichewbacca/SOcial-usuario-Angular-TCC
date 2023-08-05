@@ -13,3 +13,7 @@ mat-card-actions {
   display: flex;
   justify-content: flex-start;
 }
+.tecnico {
+  align-items: baseline;
+  font-size: large;
+}
